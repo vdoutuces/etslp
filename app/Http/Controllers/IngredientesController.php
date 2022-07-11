@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers;
+
+
+class IngredientesController{
+
+    private  $dbIng;
+
+    public function __construct()
+    {
+        $this->dbIng = \App\Http\Models\DB::getInstance();
+
+    }
+
+
+    public function index($pag=1)
+    {
+        
+    $porpag = 50;
+    $nfilas = $this->dbIng->numRows('SELECT count(*) FROM ingredientes');    
+    $lista = $this->dbIng->getArray('SELECT * FROM ingredientes '." LIMIT 0, $porpag " );
+
+    $retorno = [
+        "datos" => $lista,
+        "paginas"  => [ "actual" => $pag,
+                "cantidadfilas" => $nfilas,
+                "cantPaginas" => ceil($nfilas/$porpag) ]
+
+    ];
+
+        return $retorno;
+
+    }
+
+
+
+    public function pagina($pag=1)
+    {
+        
+    
+    $porpag = 5;
+    $nfilas = $this->dbIng->numRows('SELECT id FROM ingredientes');    
+    
+    $cantpgs = ceil($nfilas/$porpag);
+    $inicio =  $porpag * $pag - $porpag ;
+
+    if ( $pag > $cantpgs )
+    {
+        $inicio = 0;
+    }
+    
+    $lista = $this->dbIng->getArray('SELECT * FROM ingredientes '. "LIMIT $inicio , $porpag");
+
+    $retorno = [
+        "datos" => $lista,
+        "paginas"  => [ "actual" => $pag,
+                "cantPaginas" => $cantpgs ]
+
+    ];
+
+        return $retorno;
+
+    }
+
+
+
+}
