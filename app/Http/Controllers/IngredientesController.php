@@ -18,14 +18,12 @@ class IngredientesController{
     {
         
     $porpag = 50;
-    $nfilas = $this->dbIng->numRows('SELECT count(*) FROM ingredientes');    
     $lista = $this->dbIng->getArray('SELECT * FROM ingredientes '." LIMIT 0, $porpag " );
 
     $retorno = [
         "datos" => $lista,
         "paginas"  => [ "actual" => $pag,
-                "cantidadfilas" => $nfilas,
-                "cantPaginas" => ceil($nfilas/$porpag) ]
+                "cantPaginas" => $pag ]
 
     ];
 

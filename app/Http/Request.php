@@ -92,7 +92,10 @@ class Request{
     {
 
  
-        $datos = call_user_func_array([ new $this->controlador , $this->metodo ], $this->param);    
+        $datos = call_user_func_array(   [ new $this->controlador , 
+                                            $this->metodo ],
+                                            $this->param
+                                        );    
         $vi = new $this->vista;
         $htmlvista = $vi->render($datos);
  

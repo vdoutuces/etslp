@@ -13,19 +13,37 @@ a:visited, a:active , a:link{
 	}
 
 
+ .paginar	a:visited, a:active , a:link{
+		text-decoration: none;
+		background-color: rgb(53, 53, 47);
+		color: rgb(234, 234, 245);
+		font-size: 18px;
+		
+		}
+	
+
+     .paginar 	a:hover{
+		color: black;
+		background-color: white; 
+		}
+	
+
+
 	.paginar ul{
 
-		background-color: #043121;
+		background-color: #cde4dc;
 		padding: 5px;
 	}
 
 	.paginar li{
 		
+		font-size: 22;
+		font-weight: bolder;
 		list-style-type: none;
 		display: inline;
-		padding-right: 10px;
+		padding: 10px;
 		color: white;
-
+		background-color: #043121;
 		}
 
 
